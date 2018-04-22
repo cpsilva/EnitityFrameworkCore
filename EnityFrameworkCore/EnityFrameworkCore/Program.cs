@@ -30,7 +30,7 @@ namespace EnityFrameworkCore
             using (var context = new LojaContext())
             {
                 //context.Produtos.Add(p);
-                contexto.Produtos.AddRange(p1, p2, p3);
+                context.Produtos.AddRange(p1, p2, p3);
                 context.SaveChanges();
             }
         }
