@@ -4,3 +4,6 @@
 
 /EnityFrameworkCore/.vs/EnityFrameworkCore/v15
 /EnityFrameworkCore/EnityFrameworkCore/obj/Debug
+/EnityFrameworkCore/EnityFrameworkCore/bin/Debug
+/EnityFrameworkCore/packages
+/EnityFrameworkCore/EnityFrameworkCore/EnityFrameworkCore.csproj.user
