@@ -1,36 +1,59 @@
 ﻿using System;
+using System.Linq;
 
 namespace EnityFrameworkCore
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //GravarUsandoAdoNet();
-            GravarUsandoEntity();
+            //GravarUsandoEntity();
+            RecuperarProdutos();
+            RemoverProduto();
+            RecuperarProdutos();
+        }
+
+        private static void RemoverProduto()
+        {
+            using (var context = new LojaContext())
+            {
+                var produtos = context.Produtos.ToList();
+                foreach (var item in produtos)
+                {
+                    context.Produtos.Remove(item);
+                }
+                context.SaveChanges();
+            }
+        }
+
+        private static void RecuperarProdutos()
+        {
+            using (var context = new LojaContext())
+            {
+                var produtos = context.Produtos.ToList();
+
+                Console.WriteLine("Foram encontrados {0} produto(s).", produtos.Count);
+
+                foreach (var item in produtos)
+                {
+                    Console.WriteLine(item.Nome);
+                }
+            }
         }
 
         private static void GravarUsandoEntity()
         {
-            Produto p1 = new Produto();
-            p1.Nome = "Harry Potter e a Ordem da Fênix";
-            p1.Categoria = "Livros";
-            p1.Preco = 19.89;
-
-            Produto p2 = new Produto();
-            p2.Nome = "Senhor dos Anéis 1";
-            p2.Categoria = "Livros";
-            p2.Preco = 19.89;
-
-            Produto p3 = new Produto();
-            p3.Nome = "O Monge e o Executivo";
-            p3.Categoria = "Livros";
-            p3.Preco = 19.89;
+            Produto p = new Produto
+            {
+                Nome = "Cassino Royale",
+                Categoria = "Filmes",
+                Preco = 19.89
+            };
 
             using (var context = new LojaContext())
             {
-                //context.Produtos.Add(p);
-                context.Produtos.AddRange(p1, p2, p3);
+                context.Produtos.Add(p);
                 context.SaveChanges();
             }
         }
